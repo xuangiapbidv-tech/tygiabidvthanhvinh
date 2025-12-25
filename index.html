@@ -1,15 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bảng tỷ giá BIDV - Chi nhánh Thành Vinh</title>
+<link rel="icon" href="images/favicon.ico" type="image/x-icon"> 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Inter', Arial, sans-serif;
+    background: #003D3C;
+    color: white;
+}
+
+/* ===== HEADER ===== */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 30px;
+}
+
+.logo {
+    background: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+}
+.logo img {
+    height: 48px;
+    display: block;
+}
+
+.center-title {
+    font-size: 38px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-left: 50px;
+    color: #F7C227;
+}
+
+.datetime {
+    font-size: 20px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.divider {
+    color: #FFD966;
+    margin: 0 8px;
+}
+.clock {
+    color: #FFD966;
+    margin-right: 4px;
+}
+
+/* GOLD LINE */
+.gold-line {
+    height: 6px;
+    background: #F7C227;
+}
+
+/* ===== CONTENT ===== */
+.content {
+    background: #FFFFFF;
+    color: #000;
+    margin: 25px auto;
+    width: 95%;
+    max-width: 1300px;
+    padding-bottom: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.sub-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    padding: 20px 0 15px;
+    color: #004787;
+    border-bottom: 2px solid #EEEEEE;
+    margin: 0 30px;
+}
+
+.last-update {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+    padding: 10px 0;
+    font-style: italic;
+}
+
+/* TABLE */
+table {
+    width: 95%;
+    margin: 20px auto 0;
+    border-collapse: collapse;
+    font-size: 20px;
+    border: 3px solid #004787;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+th {
+    background: #004787;
+    color: white;
+    padding: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+td {
+    padding: 14px;
+    border-bottom: 1px solid #E0E0E0;
+    font-weight: 600;
+}
+
+/* Cột Loại tiền */
+td:nth-child(1) {
+    text-align: left;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Cột Tên ngoại tệ */
+td:nth-child(2) {
+    text-align: left;
+    color: #333;
+}
+
+/* Các cột số */
+td:nth-child(n+3) {
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.5px;
+}
+
+/* Dòng xen kẽ */
+tr:nth-child(even) td {
+    background: #F4F8FB;
+}
+
+/* FOOTER */
+.footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #003D3C;
+    text-align: center;
+    padding: 18px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+}
+
+.footer-gold {
+    color: #FFD966;
+    font-style: italic;
+}
+
+/* ===== RESPONSIVE CSS (Cho Điện thoại) ===== */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 15px 20px;
+        align-items: center;
+    }
+    .center-title {
+        font-size: 24px;
+        margin: 10px 0;
+        text-align: center;
+        letter-spacing: 1px;
+    }
+    .datetime {
+        font-size: 16px;
+        margin-top: 5px;
+    }
+    
+    .content {
+        width: 98%;
+        margin: 15px auto;
+        padding-bottom: 20px;
+    }
+    
+    .sub-title {
+        font-size: 20px;
+        padding: 15px 0 10px;
+    }
+    
+    table {
+        font-size: 14px;
+        width: 98%;
+    }
+    
+    th, td {
+        padding: 10px 6px; /* Giảm padding cho ô */
+    }
+
+    /* Thu hẹp cột Loại tiền và Tên ngoại tệ */
+    td:nth-child(1), th:nth-child(1) { width: 10%; }
+    td:nth-child(2), th:nth-child(2) { width: 30%; }
+    
+    .footer {
+        font-size: 14px;
+        padding: 15px 10px;
+    }
+}
+/* END RESPONSIVE CSS */
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="logo">
+        <img src="images/logo.png" alt="BIDV">
+    </div>
+
+    <div class="center-title">
+        NGÂN HÀNG BIDV CHI NHÁNH THÀNH VINH
+    </div>
+
+    <div class="datetime">
+        <span id="date"></span>
+        <span class="divider">|</span>
+        <span class="clock">🕒</span>
+        <span id="clock"></span>
+    </div>
+</div>
+
+<div class="gold-line"></div>
+
+<div class="content">
+    <div class="sub-title">BẢNG TỶ GIÁ NGOẠI TỆ</div>
+
+    <div class="last-update">
+        Lần cập nhật cuối:
+        <span id="last-update-time"></span>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Loại tiền</th>
+                <th>Tên ngoại tệ</th>
+                <th>Mua tiền mặt</th>
+                <th>Mua chuyển khoản</th>
+                <th>Bán</th>
+            </tr>
+        </thead>
+        <tbody id="exchange-rate-data">
+            <tr><td colspan="5" style="text-align: center; font-style: italic;">Đang tải dữ liệu tỷ giá...</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="footer">
+    NGÂN HÀNG TMCP ĐẦU TƯ VÀ PHÁT TRIỂN VIỆT NAM – CHI NHÁNH THÀNH VINH
+    <span class="footer-gold"> – HÂN HẠNH PHỤC VỤ QUÝ KHÁCH</span>
+</div>
+
 <script>
 // =======================================================
-// ** THIẾT LẬP KẾT NỐI GOOGLE SHEET (Dùng phương pháp API thay thế) **
+// ** THIẾT LẬP KẾT NỐI GOOGLE SHEET (Dùng phương pháp API CSV) **
 // =======================================================
 // ID Google Sheet của Ông Chủ
 const SHEET_ID = '16pWdQNd6UjUv4aTQLm2jCnhRR6QGjSR58yEwk9dYgdI'; 
 // Tên Sheet mới của Ông Chủ
 const SHEET_NAME = 'data'; 
-// Dùng API khác để tránh lỗi metadata của Gviz (tqx=out:csv)
+// Dùng API CSV để tránh lỗi metadata của Gviz
 const API_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${SHEET_NAME}`;
 
-// Hàm cập nhật thời gian hiển thị (Giữ nguyên)
+// Hàm cập nhật thời gian hiển thị
 function updateTime() {
     const now = new Date();
     const dateOptions = { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' };
@@ -17,7 +280,7 @@ function updateTime() {
     document.getElementById("clock").innerHTML = now.toLocaleTimeString('vi-VN');
 }
 
-// Hàm format giá trị (Chỉnh sửa để xử lý chuỗi CSV)
+// Hàm format giá trị (Đã tối ưu cho CSV)
 function formatValue(value) {
     if (!value || value === '-') {
         return value || ''; // Trả về dấu gạch ngang hoặc chuỗi rỗng
@@ -47,15 +310,15 @@ function fetchExchangeRates() {
             const rows = csvData.split('\n');
             let newRows = '';
 
-            // Bỏ qua Hàng 1 (Tiêu đề, vì chúng ta đã đổi thành Tiếng Anh)
+            // Bỏ qua Hàng 1 (Tiêu đề đã được đổi thành Tiếng Anh)
             for (let i = 1; i < rows.length; i++) {
-                // Tách cột bằng dấu phẩy
-                const cells = rows[i].split(','); 
+                // *** ĐÃ CHUYỂN SANG DẤU CHẤM PHẨY (;) ĐỂ PHÙ HỢP VỚI ĐỊNH DẠNG CSV CỦA VIỆT NAM ***
+                const cells = rows[i].split(';'); 
                 
                 // Kiểm tra đủ 5 cột dữ liệu không
                 if (cells.length < 5) continue; 
                 
-                // Cells[0] là Loại tiền, Cells[1] là Tên ngoại tệ, Cells[2, 3, 4] là tỷ giá
+                // Lấy dữ liệu và định dạng
                 const currencyCode = formatValue(cells[0].trim());
                 const currencyName = formatValue(cells[1].trim());
                 const cashBuy = formatValue(cells[2].trim());
@@ -82,7 +345,7 @@ function fetchExchangeRates() {
                     now.toLocaleTimeString('vi-VN') + ' - ' + now.toLocaleDateString('vi-VN');
             } else {
                  tableBody.innerHTML = 
-                    '<tr><td colspan="5" style="text-align: center; color: red; font-weight: bold;">Không có dữ liệu tỷ giá nào được tải.</td></tr>';
+                    '<tr><td colspan="5" style="text-align: center; color: red; font-weight: bold;">Không có dữ liệu tỷ giá nào được tải. Vui lòng kiểm tra Sheet "data".</td></tr>';
             }
 
         } else {
@@ -101,3 +364,6 @@ updateTime();
 fetchExchangeRates(); 
 setInterval(fetchExchangeRates, 300000); 
 </script>
+
+</body>
+</html>
