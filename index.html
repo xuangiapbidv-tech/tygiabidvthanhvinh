@@ -265,7 +265,7 @@ tr:nth-child(even) td {
 // =======================================================
 // ** THIẾT LẬP KẾT NỐI GOOGLE SHEET (Dùng phương pháp API CSV) **
 // =======================================================
-// ID Google Sheet ĐÃ SỬA CHỮA theo đường link mới của Ông Chủ
+// ID Google Sheet ĐÃ ĐƯỢC SỬA CHỮA theo đường link mới của Ông Chủ
 const SHEET_ID = '16NdPp2DlDjJRjHSsdhPOig4_c3mq7CbfRfBf2gcl5I8'; 
 // Tên Sheet mới của Ông Chủ
 const SHEET_NAME = 'data'; 
@@ -280,22 +280,31 @@ function updateTime() {
     document.getElementById("clock").innerHTML = now.toLocaleTimeString('vi-VN');
 }
 
-// Hàm format giá trị (Đã tối ưu cho CSV)
+// ** HÀM ĐỊNH DẠNG ĐÃ ĐƯỢC CẬP NHẬT ĐỂ XỬ LÝ DẤU PHẨY THẬP PHÂN **
 function formatValue(value) {
     if (!value || value === '-') {
         return value || ''; // Trả về dấu gạch ngang hoặc chuỗi rỗng
     }
     
-    // Xóa dấu nháy kép (nếu có)
-    const cleanedValue = value.replace(/"/g, ''); 
+    // 1. Xóa dấu nháy kép (nếu có) và khoảng trắng
+    let cleanedValue = value.replace(/"/g, '').trim(); 
     
-    // Nếu là số, format lại theo định dạng Việt Nam
-    if (!isNaN(cleanedValue) && cleanedValue.trim() !== '') {
-        const numberValue = parseFloat(cleanedValue);
-        return numberValue.toLocaleString('vi-VN', { minimumFractionDigits: 0, maximumFractionDigits: 4 }); 
+    // 2. Kiểm tra nếu giá trị là số
+    let isNumeric = !isNaN(cleanedValue.replace(',', '.')); 
+    
+    if (isNumeric && cleanedValue !== '') {
+        // Thay dấu phẩy (decimal separator) thành dấu chấm trước khi parse
+        const parseableValue = cleanedValue.replace(/,/g, '.'); 
+        const numberValue = parseFloat(parseableValue);
+
+        if (!isNaN(numberValue)) {
+            // Định dạng lại theo định dạng Việt Nam (dấu chấm là ngàn, dấu phẩy là thập phân)
+            return numberValue.toLocaleString('vi-VN', { minimumFractionDigits: 0, maximumFractionDigits: 4 }); 
+        }
     }
     
-    return value;
+    // 3. Nếu không phải số (ví dụ: mã tiền tệ, tên, hoặc dấu gạch ngang)
+    return cleanedValue;
 }
 
 // Hàm lấy dữ liệu từ Google Sheets (Dùng XMLHttpRequest)
@@ -312,7 +321,7 @@ function fetchExchangeRates() {
 
             // Bỏ qua Hàng 1 (Tiêu đề đã được đổi thành Tiếng Anh)
             for (let i = 1; i < rows.length; i++) {
-                // *** ĐÃ CHUYỂN SANG DẤU PHẨY (,) LÀM FALLBACK CUỐI CÙNG ***
+                // SỬ DỤNG DẤU PHẨY (,) LÀM DẤU PHÂN CÁCH (DELIMITER)
                 const cells = rows[i].split(','); 
                 
                 // Kiểm tra đủ 5 cột dữ liệu không
