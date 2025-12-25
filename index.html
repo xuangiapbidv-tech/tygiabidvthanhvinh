@@ -267,7 +267,7 @@ tr:nth-child(even) td {
 // =======================================================
 // ID Google Sheet của Ông Chủ
 const SHEET_ID = '16pWdQNd6UjUv4aTQLm2jCnhRR6QGjSR58yEwk9dYgdI'; 
-// Tên Sheet mới của Ông Chủ
+// Tên Sheet mới của Ông Chủ (Đã xác định là 'data' để tránh lỗi)
 const SHEET_NAME = 'data'; 
 const API_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${SHEET_NAME}`;
 
@@ -295,6 +295,7 @@ function formatValue(cell) {
 
     // Nếu là số, format lại theo định dạng Việt Nam
     if (typeof rawValue === 'number') {
+        // Sử dụng minimumFractionDigits: 0 để đảm bảo số nguyên vẫn hiển thị đẹp.
         return rawValue.toLocaleString('vi-VN', { minimumFractionDigits: 0, maximumFractionDigits: 4 }); 
     }
     
@@ -317,7 +318,8 @@ async function fetchExchangeRates() {
         
         let newRows = '';
 
-        rows.forEach(row => {
+        // *** QUAN TRỌNG: DÙNG .slice(1) ĐỂ BỎ QUA HÀNG TIÊU ĐỀ (Hàng 1) ***
+        rows.slice(1).forEach(row => { 
             // Lấy dữ liệu từ 5 cột: c[0] -> c[4]
             const currencyCode = row.c[0] ? row.c[0].v : '';
             const currencyName = row.c[1] ? row.c[1].v : '';
