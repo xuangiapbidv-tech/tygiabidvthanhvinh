@@ -265,8 +265,8 @@ tr:nth-child(even) td {
 // =======================================================
 // ** THIẾT LẬP KẾT NỐI GOOGLE SHEET (Dùng phương pháp API CSV) **
 // =======================================================
-// ID Google Sheet của Ông Chủ
-const SHEET_ID = '16pWdQNd6UjUv4aTQLm2jCnhRR6QGjSR58yEwk9dYgdI'; 
+// ID Google Sheet ĐÃ SỬA CHỮA theo đường link mới của Ông Chủ
+const SHEET_ID = '16NdPp2DlDjJRjHSsdhPOig4_c3mq7CbfRfBf2gcl5I8'; 
 // Tên Sheet mới của Ông Chủ
 const SHEET_NAME = 'data'; 
 // Dùng API CSV để tránh lỗi metadata của Gviz
@@ -312,8 +312,8 @@ function fetchExchangeRates() {
 
             // Bỏ qua Hàng 1 (Tiêu đề đã được đổi thành Tiếng Anh)
             for (let i = 1; i < rows.length; i++) {
-                // *** ĐÃ CHUYỂN SANG DẤU CHẤM PHẨY (;) ĐỂ PHÙ HỢP VỚI ĐỊNH DẠNG CSV CỦA VIỆT NAM ***
-                const cells = rows[i].split(';'); 
+                // *** ĐÃ CHUYỂN SANG DẤU PHẨY (,) LÀM FALLBACK CUỐI CÙNG ***
+                const cells = rows[i].split(','); 
                 
                 // Kiểm tra đủ 5 cột dữ liệu không
                 if (cells.length < 5) continue; 
