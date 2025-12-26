@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bảng tỷ giá BIDV - Chi nhánh Thành Vinh</title>
-<link rel="icon" href="images/favicon.ico" type="image/x-icon"> 
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -15,29 +15,24 @@ body {
     color: white;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 18px 30px;
 }
-
 .logo {
     background: white;
     padding: 8px 14px;
     border-radius: 8px;
 }
-.logo img {
-    height: 48px;
-    display: block;
-}
+.logo img { height: 48px; }
 
 .center-title {
     font-size: 38px;
     font-weight: 800;
     letter-spacing: 1.5px;
-    margin-left: 50px;
     color: #F7C227;
 }
 
@@ -46,22 +41,13 @@ body {
     font-weight: 600;
     white-space: nowrap;
 }
-.divider {
-    color: #FFD966;
-    margin: 0 8px;
-}
-.clock {
-    color: #FFD966;
-    margin-right: 4px;
-}
+.divider { color: #FFD966; margin: 0 8px; }
+.clock { color: #FFD966; }
 
 /* GOLD LINE */
-.gold-line {
-    height: 6px;
-    background: #F7C227;
-}
+.gold-line { height: 6px; background: #F7C227; }
 
-/* ===== CONTENT ===== */
+/* CONTENT */
 .content {
     background: #FFFFFF;
     color: #000;
@@ -79,7 +65,7 @@ body {
     font-weight: 800;
     padding: 20px 0 15px;
     color: #004787;
-    border-bottom: 2px solid #EEEEEE;
+    border-bottom: 2px solid #EEE;
     margin: 0 30px;
 }
 
@@ -101,7 +87,6 @@ table {
     border-radius: 16px;
     overflow: hidden;
 }
-
 th {
     background: #004787;
     color: white;
@@ -109,119 +94,44 @@ th {
     font-weight: 700;
     text-transform: uppercase;
 }
-
 td {
     padding: 14px;
     border-bottom: 1px solid #E0E0E0;
     font-weight: 600;
 }
-
-/* Cột Loại tiền */
-td:nth-child(1) {
-    text-align: left;
-    font-weight: 700;
-    color: #333;
-}
-
-/* Cột Tên ngoại tệ */
-td:nth-child(2) {
-    text-align: left;
-    color: #333;
-}
-
-/* Các cột số */
+td:nth-child(1), td:nth-child(2) { text-align: left; color: #333; }
 td:nth-child(n+3) {
     text-align: center;
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0.5px;
 }
-
-/* Dòng xen kẽ */
-tr:nth-child(even) td {
-    background: #F4F8FB;
-}
+tr:nth-child(even) td { background: #F4F8FB; }
 
 /* FOOTER */
 .footer {
     position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    left: 0; right: 0; bottom: 0;
     background: #003D3C;
     text-align: center;
-    padding: 18px 20px;
+    padding: 18px;
     font-size: 18px;
     font-weight: 600;
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
 }
+.footer-gold { color: #FFD966; font-style: italic; }
 
-.footer-gold {
-    color: #FFD966;
-    font-style: italic;
-}
-
-/* ===== RESPONSIVE CSS (Cho Điện thoại) ===== */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        padding: 15px 20px;
-        align-items: center;
-    }
-    .center-title {
-        font-size: 24px;
-        margin: 10px 0;
-        text-align: center;
-        letter-spacing: 1px;
-    }
-    .datetime {
-        font-size: 16px;
-        margin-top: 5px;
-    }
-    
-    .content {
-        width: 98%;
-        margin: 15px auto;
-        padding-bottom: 20px;
-    }
-    
-    .sub-title {
-        font-size: 20px;
-        padding: 15px 0 10px;
-    }
-    
-    table {
-        font-size: 14px;
-        width: 98%;
-    }
-    
-    th, td {
-        padding: 10px 6px; /* Giảm padding cho ô */
-    }
-
-    /* Thu hẹp cột Loại tiền và Tên ngoại tệ */
-    td:nth-child(1), th:nth-child(1) { width: 10%; }
-    td:nth-child(2), th:nth-child(2) { width: 30%; }
-    
-    .footer {
-        font-size: 14px;
-        padding: 15px 10px;
-    }
+    .header { flex-direction: column; }
+    .center-title { font-size: 24px; text-align: center; }
+    table { font-size: 14px; }
 }
-/* END RESPONSIVE CSS */
 </style>
 </head>
 
 <body>
 
 <div class="header">
-    <div class="logo">
-        <img src="images/logo.png" alt="BIDV">
-    </div>
-
-    <div class="center-title">
-        NGÂN HÀNG BIDV CHI NHÁNH THÀNH VINH
-    </div>
-
+    <div class="logo"><img src="images/logo.png" alt="BIDV"></div>
+    <div class="center-title">NGÂN HÀNG BIDV CHI NHÁNH THÀNH VINH</div>
     <div class="datetime">
         <span id="date"></span>
         <span class="divider">|</span>
@@ -234,11 +144,7 @@ tr:nth-child(even) td {
 
 <div class="content">
     <div class="sub-title">BẢNG TỶ GIÁ NGOẠI TỆ</div>
-
-    <div class="last-update">
-        Lần cập nhật cuối:
-        <span id="last-update-time"></span>
-    </div>
+    <div class="last-update">Lần cập nhật cuối: <span id="last-update-time"></span></div>
 
     <table>
         <thead>
@@ -251,7 +157,7 @@ tr:nth-child(even) td {
             </tr>
         </thead>
         <tbody id="exchange-rate-data">
-            <tr><td colspan="5" style="text-align: center; font-style: italic;">Đang tải dữ liệu tỷ giá...</td></tr>
+            <tr><td colspan="5" style="text-align:center;font-style:italic">Đang tải dữ liệu...</td></tr>
         </tbody>
     </table>
 </div>
@@ -262,107 +168,70 @@ tr:nth-child(even) td {
 </div>
 
 <script>
-// =======================================================
-// ** THIẾT LẬP KẾT NỐI GOOGLE SHEET (Dùng phương pháp API CSV) **
-// =======================================================
-// ID Google Sheet ĐÃ SỬA CHỮA theo đường link mới của Ông Chủ
-const SHEET_ID = '16NdPp2DlDjJRjHSsdhPOig4_c3mq7CbfRfBf2gcl5I8'; 
-// Tên Sheet mới của Ông Chủ
-const SHEET_NAME = 'data'; 
-// Dùng API CSV để tránh lỗi metadata của Gviz
+const SHEET_ID = '16NdPp2DlDjJRjHSsdhPOig4_c3mq7CbfRfBf2gcl5I8';
+const SHEET_NAME = 'data';
 const API_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${SHEET_NAME}`;
 
-// Hàm cập nhật thời gian hiển thị
 function updateTime() {
     const now = new Date();
-    const dateOptions = { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' };
-    document.getElementById("date").innerHTML = now.toLocaleDateString('vi-VN', dateOptions);
-    document.getElementById("clock").innerHTML = now.toLocaleTimeString('vi-VN');
+    document.getElementById("date").innerText =
+        now.toLocaleDateString('vi-VN',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'});
+    document.getElementById("clock").innerText =
+        now.toLocaleTimeString('vi-VN');
 }
 
-// Hàm format giá trị (Đã tối ưu cho CSV)
-function formatValue(value) {
-    if (!value || value === '-') {
-        return value || ''; // Trả về dấu gạch ngang hoặc chuỗi rỗng
+function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    for (let char of line) {
+        if (char === '"') inQuotes = !inQuotes;
+        else if (char === ',' && !inQuotes) {
+            result.push(current);
+            current = '';
+        } else current += char;
     }
-    
-    // Xóa dấu nháy kép (nếu có)
-    const cleanedValue = value.replace(/"/g, ''); 
-    
-    // Nếu là số, format lại theo định dạng Việt Nam
-    if (!isNaN(cleanedValue) && cleanedValue.trim() !== '') {
-        const numberValue = parseFloat(cleanedValue);
-        return numberValue.toLocaleString('vi-VN', { minimumFractionDigits: 0, maximumFractionDigits: 4 }); 
-    }
-    
-    return value;
+    result.push(current);
+    return result;
 }
 
-// Hàm lấy dữ liệu từ Google Sheets (Dùng XMLHttpRequest)
+function clean(val) {
+    if (!val || val === '""') return '–';
+    const v = val.replace(/"/g,'').trim();
+    if (!isNaN(v)) return Number(v).toLocaleString('vi-VN');
+    return v;
+}
+
 function fetchExchangeRates() {
-    const tableBody = document.getElementById('exchange-rate-data');
-    
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', API_URL);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            const csvData = xhr.responseText;
-            const rows = csvData.split('\n');
-            let newRows = '';
-
-            // Bỏ qua Hàng 1 (Tiêu đề đã được đổi thành Tiếng Anh)
-            for (let i = 1; i < rows.length; i++) {
-                // *** ĐÃ CHUYỂN SANG DẤU PHẨY (,) LÀM FALLBACK CUỐI CÙNG ***
-                const cells = rows[i].split(','); 
-                
-                // Kiểm tra đủ 5 cột dữ liệu không
-                if (cells.length < 5) continue; 
-                
-                // Lấy dữ liệu và định dạng
-                const currencyCode = formatValue(cells[0].trim());
-                const currencyName = formatValue(cells[1].trim());
-                const cashBuy = formatValue(cells[2].trim());
-                const transferBuy = formatValue(cells[3].trim());
-                const sell = formatValue(cells[4].trim());
-
-                if (currencyCode) { // Chỉ thêm dòng nếu có Loại tiền
-                     newRows += `
-                        <tr>
-                            <td>${currencyCode}</td>
-                            <td>${currencyName}</td>
-                            <td>${cashBuy}</td>
-                            <td>${transferBuy}</td>
-                            <td>${sell}</td>
-                        </tr>`;
+    fetch(API_URL)
+        .then(res => res.text())
+        .then(csv => {
+            const rows = csv.split('\n').slice(1);
+            let html = '';
+            rows.forEach(r => {
+                const c = parseCSVLine(r);
+                if (c.length >= 5 && c[0]) {
+                    html += `<tr>
+                        <td>${clean(c[0])}</td>
+                        <td>${clean(c[1])}</td>
+                        <td>${clean(c[2])}</td>
+                        <td>${clean(c[3])}</td>
+                        <td>${clean(c[4])}</td>
+                    </tr>`;
                 }
-            }
-
-            if (newRows) {
-                tableBody.innerHTML = newRows;
-                // Cập nhật "Lần cập nhật cuối"
-                const now = new Date();
-                document.getElementById("last-update-time").innerHTML = 
-                    now.toLocaleTimeString('vi-VN') + ' - ' + now.toLocaleDateString('vi-VN');
-            } else {
-                 tableBody.innerHTML = 
-                    '<tr><td colspan="5" style="text-align: center; color: red; font-weight: bold;">Không có dữ liệu tỷ giá nào được tải. Vui lòng kiểm tra Sheet "data".</td></tr>';
-            }
-
-        } else {
-            console.error('Lỗi khi tải tỷ giá:', xhr.status);
-            tableBody.innerHTML = 
-                '<tr><td colspan="5" style="text-align: center; color: red; font-weight: bold;">Lỗi kết nối API. Vui lòng kiểm tra ID và Tên Sheet.</td></tr>';
-        }
-    };
-    xhr.send();
+            });
+            document.getElementById('exchange-rate-data').innerHTML = html || 
+                '<tr><td colspan="5" style="text-align:center;color:red">Không có dữ liệu</td></tr>';
+            document.getElementById('last-update-time').innerText =
+                new Date().toLocaleTimeString('vi-VN') + ' - ' +
+                new Date().toLocaleDateString('vi-VN');
+        });
 }
 
-
-// --- Khởi tạo ---
-setInterval(updateTime, 1000); 
-updateTime(); 
-fetchExchangeRates(); 
-setInterval(fetchExchangeRates, 300000); 
+setInterval(updateTime, 1000);
+updateTime();
+fetchExchangeRates();
+setInterval(fetchExchangeRates, 300000);
 </script>
 
 </body>
